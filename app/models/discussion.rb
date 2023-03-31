@@ -8,6 +8,8 @@ class Discussion < ApplicationRecord
 
   accepts_nested_attributes_for :posts
 
+  broadcasts_to :category, inserts_by: :prepend
+
   validates :name, presence: true
 
   after_create_commit -> { broadcast_prepend_to "discussions" }
