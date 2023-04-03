@@ -8,6 +8,8 @@ class Discussion < ApplicationRecord
 
   accepts_nested_attributes_for :posts
 
+  scope :pinned_first, -> { order(pinned: :desc, updated_at: :desc) }
+
   broadcasts_to :category, inserts_by: :prepend
 
   validates :name, presence: true
