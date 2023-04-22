@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     collection do
       get 'category/:id', to: "categories/discussions#index", as: :category
     end
+
+    resources :notifications, only: :create, module: :discussions
+
   end
   root to: "main#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
