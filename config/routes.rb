@@ -11,6 +11,13 @@ Rails.application.routes.draw do
     resources :notifications, only: :create, module: :discussions
 
   end
+
+  resources :notifications, only: :index do
+    collection do
+      post '/mark_as_read', to: "notifications#read_all", as: :read
+    end
+  end
+  
   root to: "main#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
