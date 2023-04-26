@@ -18,7 +18,13 @@ Rails.application.routes.draw do
     end
   end
   
-  root to: "main#index"
+  unauthenticated do
+    root to: "main#index", as: :unauthenticated_root
+  end
+
+  authenticated do
+    root to: "discussions#index"
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
